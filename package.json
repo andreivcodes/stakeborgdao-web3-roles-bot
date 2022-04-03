@@ -1,0 +1,11 @@
+{
+  "name": "stakeborgdao-web3-roles-bot",
+  "packageManager": "yarn@3.2.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "yarn workspaces foreach -pi run dev"
+  }
+}
