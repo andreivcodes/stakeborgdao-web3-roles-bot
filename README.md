@@ -6,4 +6,4 @@
 
 > npx yarn dev
 
-Opens frontend on `3000` and backend on `3000`
+Opens frontend on `3000` and backend on `3002`
