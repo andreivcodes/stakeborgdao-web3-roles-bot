@@ -227,7 +227,6 @@ export default function Home() {
       <Body />
       <Spacer />
       <Footer />
-      <Spacer />
     </Flex>
   );
 }
