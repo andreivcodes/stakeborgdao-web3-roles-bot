@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useConnect, useAccount, useNetwork, useSignMessage } from "wagmi";
 import React, { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
 import {
   Box,
@@ -11,6 +12,9 @@ import {
   StatLabel,
   StatHelpText,
   Center,
+  Flex,
+  Spacer,
+  Link,
 } from "@chakra-ui/react";
 
 const DiscordCard = () => {
@@ -154,6 +158,37 @@ const WalletCard = () => {
   }
 };
 
+const Header = () => {
+  return (
+    <Box mt="2rem">
+      <h1 className={styles.title}>
+        Welcome to <a href="https://stakeborgdao.com">StakeborgDAO!</a>
+      </h1>
+    </Box>
+  );
+};
+
+const Body = () => {
+  return (
+    <Flex direction="column" align="center">
+      <div className={styles.grid}>
+        <DiscordCard />
+        <WalletCard />
+      </div>
+    </Flex>
+  );
+};
+
+const Footer = () => {
+  const markdownGithubPage =
+    "![GitHub last commit](https://img.shields.io/github/last-commit/andreivdev/stakeborgdao-web3-roles-bot?style=flat-square)";
+  return (
+    <Link href="https://github.com/andreivdev/stakeborgdao-web3-roles-bot">
+      <ReactMarkdown children={markdownGithubPage} />
+    </Link>
+  );
+};
+
 export default function Home() {
   const { data: session } = useSession();
   const [{ data: accountData }, disconnect] = useAccount();
@@ -181,23 +216,18 @@ export default function Home() {
   }, [accountData, session]);
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>StakeborgDAO roles bot</title>
-        <meta name="description" content="A very cool bot" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://stakeborgdao.com">StakeborgDAO!</a>
-        </h1>
-
-        <div className={styles.grid}>
-          <DiscordCard />
-          <WalletCard />
-        </div>
-      </main>
-    </div>
+    <Flex
+      direction="column"
+      align="center"
+      alignContent="space-between"
+      h="100vh"
+    >
+      <Header />
+      <Spacer />
+      <Body />
+      <Spacer />
+      <Footer />
+      <Spacer />
+    </Flex>
   );
 }
