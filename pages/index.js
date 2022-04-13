@@ -184,7 +184,7 @@ const Footer = () => {
     "![GitHub last commit](https://img.shields.io/github/last-commit/andreivdev/stakeborgdao-web3-roles-bot?style=flat-square)";
   return (
     <Link href="https://github.com/andreivdev/stakeborgdao-web3-roles-bot">
-      <ReactMarkdown children={markdownGithubPage} />
+      <ReactMarkdown>{markdownGithubPage}</ReactMarkdown>
     </Link>
   );
 };
