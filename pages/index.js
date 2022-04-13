@@ -185,7 +185,7 @@ const Footer = () => {
   return (
     <Link
       href="https://github.com/andreivdev/stakeborgdao-web3-roles-bot"
-      mt="2rem"
+      mb="2rem"
     >
       <ReactMarkdown>{markdownGithubPage}</ReactMarkdown>
     </Link>
