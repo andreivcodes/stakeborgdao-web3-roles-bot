@@ -223,7 +223,7 @@ export default function Home() {
         toast({
           title: "Working on it...",
           status: "info",
-          duration: 1500,
+          duration: 9000,
           isClosable: true,
         });
         setProgress(1);
@@ -236,6 +236,7 @@ export default function Home() {
         }).then((response) => {
           const status = response.status;
           if (status == 200) {
+            toast.closeAll();
             toast({
               title: "You're all set, check Discord for your new role.",
               status: "success",
