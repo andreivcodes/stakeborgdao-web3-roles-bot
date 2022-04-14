@@ -45,13 +45,13 @@ export default function handler(req, res) {
     }
 
     client.destroy();
+    res.status(200).send();
   });
 
   client.on("error", (error) => {
     console.log(error);
+    res.status(400).send();
   });
 
   client.login(process.env.BOT_TOKEN);
-
-  res.status(200).send();
 }
