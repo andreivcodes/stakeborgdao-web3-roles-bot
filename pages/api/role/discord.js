@@ -40,7 +40,7 @@ export default function handler(req, res) {
 
     console.log(explorerData);
     if (explorerData) {
-      if (parseInt(explorerData.wallet) > 10) {
+      if (parseInt(explorerData.wallet) >= 10) {
         let member = await myGuild.members.fetch(uid);
         await member.roles.add(holderRole);
         console.log(
@@ -49,7 +49,7 @@ export default function handler(req, res) {
           )} tokens in wallet`
         );
       }
-      if (parseInt(explorerData.governanceStaking) > 10) {
+      if (parseInt(explorerData.governanceStaking) >= 10) {
         let member = await myGuild.members.fetch(uid);
         console.log(JSON.stringify(member));
         await member.roles.add(stakerRole);
