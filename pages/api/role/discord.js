@@ -60,6 +60,8 @@ export default function handler(req, res) {
         );
       }
     }
+
+    client.destroy();
   });
 
   client.on("error", (error) => {
@@ -69,8 +71,4 @@ export default function handler(req, res) {
   client.login(process.env.BOT_TOKEN);
 
   res.status(200).send();
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
