@@ -19,6 +19,11 @@ import {
   Alert,
   AlertIcon,
   AlertDescription,
+  Tabs,
+  Tab,
+  TabList,
+  TabPanels,
+  TabPanel,
 } from "@chakra-ui/react";
 
 const DiscordCard = () => {
@@ -169,26 +174,38 @@ const Header = () => {
         Welcome to <a href="https://stakeborgdao.com">StakeborgDAO!</a>
       </h1>
       <Flex direction="column" align="center">
-        <Alert status="warning" variant="left-accent" w="50vw" mt="1rem">
-          <AlertIcon />
-          <AlertDescription fontSize="sm">
-            Disclosure: In order to have the information up to date, the
-            association between your Discord username and your Metamask address
-            is required. If you do not want to associate the main wallet, you
-            can use a new wallet with a minimum of 10 STANDARD, to qualify as a
-            Hodler / Staker.
-          </AlertDescription>
-        </Alert>
-        <Alert status="warning" variant="left-accent" w="50vw" mt="1rem">
-          <AlertIcon />
-          <AlertDescription fontSize="sm">
-            Disclosure: Pentru a avea informația up to date, este necesară
-            asocierea dintre username-ul de Discord și adresa de Metamask. În
-            cazul în care nu doriți asocierea wallet-ului principal, puteți
-            folosi un portofel nou cu minim 10 STANDARD, pentru a vă încadra la
-            rolul de Hodler/Staker.
-          </AlertDescription>
-        </Alert>
+        <Tabs>
+          <TabList>
+            <Tab>EN</Tab>
+            <Tab>RO</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <Alert status="warning" variant="left-accent" w="50vw" mt="1rem">
+                <AlertIcon />
+                <AlertDescription fontSize="sm">
+                  Disclosure: In order to have the information up to date, the
+                  association between your Discord username and your Metamask
+                  address is required. If you do not want to associate the main
+                  wallet, you can use a new wallet with a minimum of 10
+                  STANDARD, to qualify as a Hodler / Staker.
+                </AlertDescription>
+              </Alert>
+            </TabPanel>
+            <TabPanel>
+              <Alert status="warning" variant="left-accent" w="50vw" mt="1rem">
+                <AlertIcon />
+                <AlertDescription fontSize="sm">
+                  Disclosure: Pentru a avea informația up to date, este necesară
+                  asocierea dintre username-ul de Discord și adresa de Metamask.
+                  În cazul în care nu doriți asocierea wallet-ului principal,
+                  puteți folosi un portofel nou cu minim 10 STANDARD, pentru a
+                  vă încadra la rolul de Hodler/Staker.
+                </AlertDescription>
+              </Alert>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </Flex>
     </Box>
   );
