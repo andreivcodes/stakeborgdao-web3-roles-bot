@@ -223,7 +223,7 @@ export default function Home() {
         toast({
           title: "Working on it...",
           status: "info",
-          duration: 9000,
+          duration: 1500,
           isClosable: true,
         });
         setProgress(1);
