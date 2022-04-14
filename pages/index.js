@@ -186,7 +186,7 @@ const Header = () => {
 
 const Body = () => {
   return (
-    <Flex direction="column" align="center">
+    <Flex direction="column" align="center" mt="2rem">
       <DiscordCard />
       <WalletCard />
     </Flex>
@@ -262,13 +262,12 @@ export default function Home() {
       <Flex
         direction="column"
         align="center"
-        alignContent="space-between"
         ml="1rem"
         mr="1rem"
         h="90vh"
+        alignContent="start"
       >
         <Header />
-        <Spacer />
         <Body />
         <Spacer />
         <Footer />
