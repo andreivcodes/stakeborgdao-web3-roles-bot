@@ -264,6 +264,7 @@ export default function Home() {
         alignContent="space-between"
         ml="1rem"
         mr="1rem"
+        h="90vh"
       >
         <Header />
         <Spacer />
