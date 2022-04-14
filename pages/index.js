@@ -141,7 +141,10 @@ const Header = () => {
   return (
     <Box mt="2rem">
       <Heading align="center">
-        Welcome to <a href="https://stakeborgdao.com">StakeborgDAO!</a>
+        Welcome to{" "}
+        <Link href="https://stakeborgdao.com" color="#3182ce">
+          StakeborgDAO!
+        </Link>
       </Heading>
       <Flex direction="column" align="center" maxW="50rem">
         <Tabs>
