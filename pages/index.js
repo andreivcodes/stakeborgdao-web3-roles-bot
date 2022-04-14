@@ -199,9 +199,6 @@ export default function Home() {
   useEffect(() => {
     if (accountData && session) {
       if (accountData.address && session.token) {
-        console.log(`address: ${accountData.address}`);
-        console.log(`uid: ${session.token.sub}`);
-
         let postData = {
           address: accountData.address,
           uid: session.token.sub,
