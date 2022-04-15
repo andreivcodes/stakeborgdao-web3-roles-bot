@@ -44,29 +44,32 @@ export default function handler(req, res) {
     const explorerData = data.find(
       (element) => element.address.toUpperCase() == address.toUpperCase()
     );
+    try {
+      let member = await myGuild.members.fetch(uid);
 
-    if (explorerData) {
-      if (parseInt(explorerData.wallet) >= 10) {
-        let member = await myGuild.members.fetch(uid);
-        await member.roles.add(holderRole);
-      }
-      if (parseInt(explorerData.governanceStaking) >= 10) {
-        let member = await myGuild.members.fetch(uid);
-        await member.roles.add(stakerRole);
+      if (explorerData && member) {
+        if (parseInt(explorerData.wallet) >= 10) {
+          await member.roles.add(holderRole);
+        }
+        if (parseInt(explorerData.governanceStaking) >= 10) {
+          await member.roles.add(stakerRole);
 
-        let stakedUntil = await governance_staking_contract.methods
-          .userLockedUntil(address)
-          .call();
+          let stakedUntil = await governance_staking_contract.methods
+            .userLockedUntil(address)
+            .call();
 
-        let now = moment(new Date());
-        let end = moment.unix(stakedUntil);
-        let duration = moment.duration(end.diff(now));
-        let days = duration.asDays();
+          let now = moment(new Date());
+          let end = moment.unix(stakedUntil);
+          let duration = moment.duration(end.diff(now));
+          let days = duration.asDays();
 
-        if (days > 30) {
-          await member.roles.add(diamondHandsRole);
+          if (days > 30) {
+            await member.roles.add(diamondHandsRole);
+          }
         }
       }
+    } catch {
+      res.status(400).send();
     }
 
     client.destroy();
