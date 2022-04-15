@@ -4116,6 +4116,11 @@ next-auth@^4.3.1:
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
 
+next-ssl-redirect-middleware@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/next-ssl-redirect-middleware/-/next-ssl-redirect-middleware-0.1.3.tgz#ca81869448dcfe6a5476f01e23558d2f572a12c8"
+  integrity sha512-1U/OjXKMv6Rj0Ie+0e86DLFGAg0dtVS+OhZY/ReqE+6LLlF63p3xpyTUn37iaV+qTNvdqwAcmPz2kQ22u1gRPA==
+
 next@12.1.5:
   version "12.1.5"
   resolved "https://registry.yarnpkg.com/next/-/next-12.1.5.tgz#7a07687579ddce61ee519493e1c178d83abac063"
