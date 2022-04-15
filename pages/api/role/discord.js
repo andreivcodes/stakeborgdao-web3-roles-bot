@@ -1,5 +1,8 @@
 const { Client, Intents } = require("discord.js");
 import * as Realm from "realm-web";
+import Web3 from "web3";
+import governance_staking_abi from "./abi/governance_staking.json";
+import moment from "moment";
 
 export default function handler(req, res) {
   let address = req.body.address;
@@ -10,10 +13,19 @@ export default function handler(req, res) {
     autoReconnect: true,
   });
 
+  const web3 = new Web3(new Web3.providers.HttpProvider(process.env.ETH_NODE));
+  const governance_staking_dao_contract_adress =
+    "0xbA319F6F6AC8F45E556918A0C9ECDDE64335265C";
+  let governance_staking_contract = new web3.eth.Contract(
+    governance_staking_abi,
+    governance_staking_dao_contract_adress
+  );
+
   client.on("ready", async () => {
     let myGuild = await client.guilds.cache.get("901898461568442458");
     let holderRole = await myGuild.roles.cache.get("963918748182511626");
     let stakerRole = await myGuild.roles.cache.get("963919106501918800");
+    let diamondHandsRole = await myGuild.roles.cache.get("964473109350588426");
 
     const app = new Realm.App({ id: process.env.REALM_APP_ID });
     const credentials = Realm.Credentials.apiKey(process.env.REALM_KEY);
@@ -41,6 +53,19 @@ export default function handler(req, res) {
       if (parseInt(explorerData.governanceStaking) >= 10) {
         let member = await myGuild.members.fetch(uid);
         await member.roles.add(stakerRole);
+
+        let stakedUntil = await governance_staking_contract.methods
+          .userLockedUntil(address)
+          .call();
+
+        let now = moment(new Date());
+        let end = moment(stakedUntil);
+        let duration = moment.duration(now.diff(end));
+        let days = duration.asDays();
+
+        if (days > 30) {
+          await member.roles.add(diamondHandsRole);
+        }
       }
     }
 
