@@ -60,7 +60,7 @@ export default function handler(req, res) {
 
         let now = moment(new Date());
         let end = moment.unix(stakedUntil);
-        let duration = moment.duration(now.diff(end));
+        let duration = moment.duration(end.diff(now));
         let days = duration.asDays();
 
         if (days > 30) {
