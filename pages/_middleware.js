@@ -7,10 +7,7 @@ export function middleware(req, ev) {
     currentEnv === "production" &&
     req.headers.get("x-forwarded-proto") !== "https"
   ) {
-    return NextResponse.redirect(
-      `https://roles.stakeborgdao.xyz/${req.nextUrl.pathname}`,
-      301
-    );
+    return NextResponse.redirect(`https://roles.stakeborgdao.xyz/`, 301);
   }
   return NextResponse.next();
 }
