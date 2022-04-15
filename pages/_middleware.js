@@ -9,7 +9,7 @@ export function middleware(req, ev) {
     req.headers.get("x-forwarded-proto") !== "https"
   ) {
     return NextResponse.redirect(
-      `https://${req.nextUrl.hostname}${req.nextUrl.pathname}`,
+      `https://roles.stakeborgdao.xyz/${req.nextUrl.pathname}`,
       301
     );
   }
