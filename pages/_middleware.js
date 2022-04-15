@@ -1,14 +1,3 @@
-import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
+import sslRedirect from "next-ssl-redirect-middleware";
 
-let Environment = "production" | "development" | "other";
-export function middleware(req, ev) {
-  const currentEnv = process.env.NODE_ENV;
-
-  if (
-    currentEnv === "production" &&
-    req.headers.get("x-forwarded-proto") !== "https"
-  ) {
-    return NextResponse.redirect(`https://roles.stakeborgdao.xyz/`, 301);
-  }
-  return NextResponse.next();
-}
+export default sslRedirect({});
