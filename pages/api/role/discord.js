@@ -59,7 +59,7 @@ export default function handler(req, res) {
           .call();
 
         let now = moment(new Date());
-        let end = moment(stakedUntil);
+        let end = moment.unix(stakedUntil);
         let duration = moment.duration(now.diff(end));
         let days = duration.asDays();
 
