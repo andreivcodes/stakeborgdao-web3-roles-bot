@@ -33,7 +33,14 @@ const DiscordCard = () => {
   const { data: session } = useSession();
   if (session) {
     return (
-      <Box w="20rem" borderWidth="1px" borderRadius="lg" mb="1rem" p="1rem">
+      <Box
+        w="20rem"
+        borderWidth="1px"
+        borderRadius="lg"
+        mb="1rem"
+        p="1rem"
+        boxShadow="md"
+      >
         <Flex direction="column">
           <Stat>
             <StatLabel>Discord connected</StatLabel>
@@ -55,7 +62,14 @@ const DiscordCard = () => {
     );
   } else {
     return (
-      <Box w="20rem" borderWidth="1px" borderRadius="lg" mb="1rem" p="1rem">
+      <Box
+        w="20rem"
+        borderWidth="1px"
+        borderRadius="lg"
+        mb="1rem"
+        p="1rem"
+        boxShadow="md"
+      >
         <Flex direction="column">
           <Stat>
             <StatLabel>Connect Discord</StatLabel>
@@ -91,7 +105,13 @@ const WalletCard = () => {
 
   if (accountData) {
     return (
-      <Box w="20rem" borderWidth="1px" borderRadius="lg" p="1rem">
+      <Box
+        w="20rem"
+        borderWidth="1px"
+        borderRadius="lg"
+        p="1rem"
+        boxShadow="md"
+      >
         <Flex direction="column">
           <Stat>
             <StatLabel>Wallet connected</StatLabel>
@@ -114,7 +134,13 @@ const WalletCard = () => {
     );
   } else {
     return (
-      <Box w="20rem" borderWidth="1px" borderRadius="lg" p="1rem">
+      <Box
+        w="20rem"
+        borderWidth="1px"
+        borderRadius="lg"
+        p="1rem"
+        boxShadow="md"
+      >
         <Flex direction="column">
           <Stat>
             <StatLabel>Connect wallet</StatLabel>
@@ -209,6 +235,7 @@ const Footer = () => {
     <Link
       href="https://github.com/andreivdev/stakeborgdao-web3-roles-bot"
       mt="1rem"
+      boxShadow="md"
     >
       <ReactMarkdown>{markdownGithubPage}</ReactMarkdown>
     </Link>
@@ -266,7 +293,7 @@ export default function Home() {
   }, [accountData, session, toast]);
 
   return (
-    <Box>
+    <Box h="100vh">
       {progress > 1 && <Confetti width={width} height={height} />}
       <Flex
         direction="column"
