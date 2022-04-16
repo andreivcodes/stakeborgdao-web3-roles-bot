@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 import { useToast } from "@chakra-ui/react";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
+import NoSSR from "react-no-ssr";
 
 import {
   Box,
@@ -102,7 +103,7 @@ const WalletCard = () => {
             alignSelf="center"
             colorScheme="blue"
             onClick={() => {
-              disconnect(connectData.connectors[0]);
+              disconnect();
             }}
             w="12rem"
           >
@@ -121,16 +122,24 @@ const WalletCard = () => {
               Sign in with web3 wallet to prove ownership.
             </StatHelpText>
           </Stat>
-          <Button
-            alignSelf="center"
-            colorScheme="blue"
-            onClick={() => {
-              connect(connectData.connectors[0]);
-            }}
-            w="12rem"
-          >
-            Connect wallet
-          </Button>
+          <NoSSR>
+            <Flex direction="column" gap="1rem">
+              {connectData.connectors.map((connector) => (
+                <Button
+                  key={connector.name}
+                  alignSelf="center"
+                  colorScheme="blue"
+                  disabled={!connector.ready}
+                  onClick={() => {
+                    connect(connector);
+                  }}
+                  w="15rem"
+                >
+                  Connect {connector.name}
+                </Button>
+              ))}
+            </Flex>
+          </NoSSR>
         </Flex>
       </Box>
     );
