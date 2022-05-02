@@ -68,7 +68,7 @@ export default function handler(req, res) {
           }
         }
       }
-    } catch {
+    } catch (error) {
       console.log(error);
       res.status(400).send();
     }
