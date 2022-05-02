@@ -63,6 +63,7 @@ export default function handler(req, res) {
           let duration = moment.duration(end.diff(now));
           let days = duration.asDays();
 
+          console.log("staked until:" + stakedUntil);
           console.log(days);
 
           if (days > 30) {
