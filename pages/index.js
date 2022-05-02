@@ -76,7 +76,7 @@ const DiscordCard = () => {
             <Alert status="error" variant="left-accent" my="1rem">
               <AlertIcon />
               <AlertDescription fontSize="small">
-                Login with QR code does not work. Log in using email/password.
+                Log in with QR code does not work. Log in using email/password.
               </AlertDescription>
             </Alert>
             <StatHelpText>
