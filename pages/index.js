@@ -73,6 +73,12 @@ const DiscordCard = () => {
         <Flex direction="column">
           <Stat>
             <StatLabel>Connect Discord</StatLabel>
+            <Alert status="error" variant="left-accent" my="1rem">
+              <AlertIcon />
+              <AlertDescription fontSize="small">
+                Login with QR code does not work. Log in using email/password.
+              </AlertDescription>
+            </Alert>
             <StatHelpText>
               Sign in with Discord to fetch your Discord username.
             </StatHelpText>
