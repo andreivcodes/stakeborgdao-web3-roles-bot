@@ -45,14 +45,14 @@ export default function handler(req, res) {
           .balanceOf(address)
           .call();
 
-        console.log(wallet / (10 ^ 18));
-        console.log(staking / (10 ^ 18));
+        console.log(wallet);
+        console.log(staking);
 
-        if (parseInt(wallet) >= 10 * (10 ^ 18)) {
+        if (parseInt(wallet) >= 10000000000000000000) {
           await member.roles.add(holderRole);
         }
 
-        if (parseInt(staking) >= 10 * (10 ^ 18)) {
+        if (parseInt(staking) >= 10000000000000000000) {
           await member.roles.add(stakerRole);
 
           let stakedUntil = await governance_staking_contract.methods
