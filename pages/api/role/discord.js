@@ -48,11 +48,11 @@ export default function handler(req, res) {
         console.log(wallet);
         console.log(staking);
 
-        if (parseInt(wallet) >= 10) {
+        if (parseInt(wallet) >= 10 * (10 ^ 18)) {
           await member.roles.add(holderRole);
         }
 
-        if (parseInt(staking) >= 10) {
+        if (parseInt(staking) >= 10 * (10 ^ 18)) {
           await member.roles.add(stakerRole);
 
           let stakedUntil = await governance_staking_contract.methods
