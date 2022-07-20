@@ -1,5 +1,4 @@
 const { Client, Intents } = require("discord.js");
-import * as Realm from "realm-web";
 import Web3 from "web3";
 import governance_staking_abi from "./abi/governance_staking.json";
 import standard_token_abi from "./abi/standard_token.json";
