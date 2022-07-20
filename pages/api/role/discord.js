@@ -2,6 +2,7 @@ const { Client, Intents } = require("discord.js");
 import * as Realm from "realm-web";
 import Web3 from "web3";
 import governance_staking_abi from "./abi/governance_staking.json";
+import standard_token_abi from "./abi/standard_token.json";
 import moment from "moment";
 
 export default function handler(req, res) {
@@ -16,9 +17,16 @@ export default function handler(req, res) {
   const web3 = new Web3(new Web3.providers.HttpProvider(process.env.ETH_NODE));
   const governance_staking_dao_contract_adress =
     "0xbA319F6F6AC8F45E556918A0C9ECDDE64335265C";
+  const standard_token_contract_adress =
+    "0xDA0c94c73D127eE191955FB46bACd7FF999b2bcd";
   let governance_staking_contract = new web3.eth.Contract(
     governance_staking_abi,
     governance_staking_dao_contract_adress
+  );
+
+  let standard_token = new web3.eth.Contract(
+    standard_token_abi,
+    standard_token_contract_adress
   );
 
   client.on("ready", async () => {
@@ -27,31 +35,24 @@ export default function handler(req, res) {
     let stakerRole = await myGuild.roles.cache.get("963919106501918800");
     let diamondHandsRole = await myGuild.roles.cache.get("964473109350588426");
 
-    const app = new Realm.App({ id: process.env.REALM_APP_ID });
-    const credentials = Realm.Credentials.apiKey(process.env.REALM_KEY);
-
-    await app.logIn(credentials);
-    const mongoclient = app.currentUser.mongoClient("mongodb-atlas");
-    let dbresult = await mongoclient
-      .db("stakeborgdao-explorer")
-      .collection("snapshot")
-      .find({}, { sort: { snapshot: -1 }, limit: 1 });
-
-    let dbdata = dbresult[0];
-
-    let data = dbdata.data;
-
-    const explorerData = data.find(
-      (element) => element.address.toUpperCase() == address.toUpperCase()
-    );
     try {
       let member = await myGuild.members.fetch(uid);
 
-      if (explorerData && member) {
-        if (parseInt(explorerData.wallet) >= 10) {
+      if (member) {
+        let wallet = await standard_token.methods.balanceOf(address).call();
+
+        let staking = await governance_staking_contract.methods
+          .balanceOf(address)
+          .call();
+
+        console.log(wallet);
+        console.log(staking);
+
+        if (parseInt(wallet) >= 10) {
           await member.roles.add(holderRole);
         }
-        if (parseInt(explorerData.governanceStaking) >= 10) {
+
+        if (parseInt(staking) >= 10) {
           await member.roles.add(stakerRole);
 
           let stakedUntil = await governance_staking_contract.methods
