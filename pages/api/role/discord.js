@@ -45,8 +45,8 @@ export default function handler(req, res) {
           .balanceOf(address)
           .call();
 
-        console.log(wallet);
-        console.log(staking);
+        console.log(wallet / (10 ^ 18));
+        console.log(staking / (10 ^ 18));
 
         if (parseInt(wallet) >= 10 * (10 ^ 18)) {
           await member.roles.add(holderRole);
