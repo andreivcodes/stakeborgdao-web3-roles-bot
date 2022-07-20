@@ -30,7 +30,7 @@
     "react-no-ssr": "^1.1.0",
     "react-use": "^17.4.0",
     "realm-web": "^1.7.1",
-    "wagmi": "^0.5.11",
+    "wagmi": "^0.2.26",
     "web3": "^1.7.4"
   },
   "devDependencies": {
